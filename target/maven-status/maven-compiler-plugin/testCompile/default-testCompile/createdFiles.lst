@@ -7,9 +7,11 @@ api\utilities\ReadExcelFile.class
 api\endpoints\Routes.class
 api\testcases\UserTestDD.class
 api\testcases\StoreTest.class
+api\endpoints\UserEndPoints2.class
 api\endpoints\StoreEndPoints.class
 api\testcases\PetTest.class
 api\payload\Store.class
 api\utilities\ExcelDataProvider.class
+api\testcases\UserTest2.class
 api\endpoints\PetEndPoints.class
 api\testcases\UserTest.class
