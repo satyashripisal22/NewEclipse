@@ -90,7 +90,7 @@ public class UserTest {
 		
 		Response responsepostupdate = UserEndPoints.GetUser(this.userPayload.getUsername());
 		
-		System.out.println("Update User Data");
+		System.out.println("Update User Data.");
 		
 		responsepostupdate.then().log().all();
 		
