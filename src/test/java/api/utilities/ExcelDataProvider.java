@@ -21,6 +21,7 @@ public class ExcelDataProvider {
 			return wb.getSheet(Sheetname).getRow(row).getCell(col).getStringCellValue();
 		}
 		public double getNumericData(String Sheetname,int row,int col) {
-			return wb.getSheet(Sheetname).getRow(row).getCell(col).getNumericCellValue();
+			long numdata =  (long) wb.getSheet(Sheetname).getRow(row).getCell(col).getNumericCellValue();
+			return numdata;
 		}
 }

@@ -21,7 +21,7 @@ public class UserTest {
 	public static Logger logger;
 	
 	@BeforeClass
-	public void generateTestData() {
+	public void generateTestData(){
 		
 		faker = new Faker();
 	    userPayload = new User();
@@ -51,6 +51,7 @@ public class UserTest {
 		
 		//validation
 		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusLine(), "HTTP/1.1 200 OK");
 		
 		//log
 		logger.info("Create User executed...");
@@ -61,6 +62,7 @@ public class UserTest {
 	public void testGetUserData() {
 		
 		Response response = UserEndPoints.GetUser(this.userPayload.getUsername());
+		System.out.println(response.getSessionId());
 		System.out.println("Read User Data");
 		//log response
 		response.then().log().all();

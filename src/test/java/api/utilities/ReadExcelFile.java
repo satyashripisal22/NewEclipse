@@ -46,9 +46,7 @@ public class ReadExcelFile {
 		} catch (Exception e) {
 			return 0;
 		}
-		
-		
-		
+			
 	}
 	public static int getColCount(String fileName, String sheetName) {
 		
@@ -63,14 +61,7 @@ public class ReadExcelFile {
 		} catch (Exception e) {
 			return 0;
 		}
-		
-		
-		
+			
 	}
-	
-	public static void getStringData(String sheetname,int row,int column) {
 		
-		
-	}
-	
 }

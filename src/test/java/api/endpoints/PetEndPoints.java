@@ -8,7 +8,7 @@ import io.restassured.response.Response;
 
 public class PetEndPoints {
 
-	public static Response createPet(Pet payload) {
+	public static Response CreatePet(Pet payload) {
 		
 		Response response= given()
 				.accept(ContentType.JSON)
@@ -20,4 +20,6 @@ public class PetEndPoints {
 				return response;
 				
 	}
+
+	
 }

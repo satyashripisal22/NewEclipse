@@ -8,15 +8,15 @@ public class DataProviders {
 	public String [][] AllDataProvider()
 	{
 		
-		String fName = System.getProperty("user.dir")+"//TestData//TestData.xlsx";
-		int ttlRowCnt = ReadExcelFile.getRowCount(fName, "Sheet1");
-		int ttlColCnt = ReadExcelFile.getColCount(fName, "Sheet1");
+		String fileName = System.getProperty("user.dir")+"//TestData//TestData1.xlsx";
+		int ttlRowCnt = ReadExcelFile.getRowCount(fileName, "Sheet1");
+		int ttlColCnt = ReadExcelFile.getColCount(fileName, "Sheet1");
 		
 		String userData[][] = new String[ttlRowCnt-1][ttlColCnt];
 		
-		for(int rowNo = 1;rowNo<ttlRowCnt;rowNo++) {
+		for(int rowNo=1;rowNo<ttlRowCnt;rowNo++) {
 			for(int colNo=0;colNo<ttlColCnt;colNo++) {
-				userData[rowNo-1][colNo] = ReadExcelFile.getCellValue(fName, "Sheet1", rowNo, colNo);
+				userData[rowNo-1][colNo] = ReadExcelFile.getCellValue(fileName,"Sheet1",rowNo,colNo);
 				
 			}
 		}
@@ -24,20 +24,20 @@ public class DataProviders {
 		
 	}
 	
-	@DataProvider(name="UserNameData")
+	@DataProvider(name="UserNamesData")
 	public String [] UserNameDataProvider()
 	{
 		
-		String fName = System.getProperty("user.dir")+"//TestData//TestData.xlsx";
-		int ttlRowCnt = ReadExcelFile.getRowCount(fName, "Sheet1");
+		String fileName = System.getProperty("user.dir")+"//TestData//TestData.xlsx";
+		int ttlRowCnt = ReadExcelFile.getRowCount(fileName, "Sheet1");
 		//int ttlColCnt = ReadExcelFile.getColCount(fName, "Sheet1");
 		
-		String userNameData[] = new String[ttlRowCnt-1];
+		String userNamesData[] = new String[ttlRowCnt-1];
 		
-		for(int rowNo = 1;rowNo<ttlRowCnt;rowNo++) {
-			 userNameData[rowNo-1] = ReadExcelFile.getCellValue(fName, "Sheet1", rowNo, 1);
+		for(int rowNo=1;rowNo<ttlRowCnt;rowNo++) {
+			 userNamesData[rowNo-1] = ReadExcelFile.getCellValue(fileName,"Sheet1",rowNo,1);
 		}
-		return userNameData;
+		return userNamesData;
 		
 	}
 }
