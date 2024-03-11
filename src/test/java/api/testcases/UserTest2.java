@@ -54,7 +54,7 @@ public class UserTest2 {
 		Assert.assertEquals(response.getStatusCode(), 200);
 		
 		//log
-		logger.info("Create User executed.");
+		logger.info("Create User executed");
 		
 	}
 	
