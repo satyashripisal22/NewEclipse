@@ -6,23 +6,23 @@ import org.testng.annotations.Test;
 import api.endpoints.UserEndPoints;
 import api.payload.User;
 import api.utilities.DataProviders;
-import api.utilities.ExcelDataProvider;
+
 import io.restassured.response.Response;
 
 public class UserTestDD {
 	User userPayload;
 	
-	@Test(priority=1,dataProvider="AllData", dataProviderClass=api.utilities.DataProviders.class,enabled=true)
-	public void testCreateUser(String UserID,String userName,String FirstName, String LastName,String Email,String Password,String Phone) throws Exception
+	@Test(priority=1,dataProvider="Data", dataProviderClass=api.utilities.DataProviders.class,enabled=true)
+	public void testCreateUser(String userID,String userName,String fName, String lName,String useremail,String password,String phone) throws Exception
 	{
 	    userPayload = new User();
-	    userPayload.setId(Integer.parseInt(UserID));
+	    userPayload.setId(Integer.parseInt(userID));
 	    userPayload.setUsername(userName);
-	    userPayload.setFirstname(FirstName);
-		userPayload.setLastname(LastName);
-		userPayload.setEmail(Email);
-		userPayload.setPassword(Password);
-		userPayload.setPhone(Phone);
+	    userPayload.setFirstname(fName);
+		userPayload.setLastname(lName);
+		userPayload.setEmail(useremail);
+		userPayload.setPassword(password);
+		userPayload.setPhone(phone);
 		//userPayload.setUserstatus(Integer.parseInt(userStatus));
 		Response response = UserEndPoints.createUser(userPayload);
 		
@@ -32,7 +32,7 @@ public class UserTestDD {
 		Assert.assertEquals(response.getStatusCode(), 200);	
 	}
 	
-	@Test(priority=2,dataProvider="UserNamesData",dataProviderClass=api.utilities.DataProviders.class,enabled=true)
+	@Test(priority=2,dataProvider="UserNames",dataProviderClass=api.utilities.DataProviders.class,enabled=true)
 	public void testGetUserData(String username) {
 		Response response = UserEndPoints.GetUser(username);
 		System.out.println("Read User Data");
@@ -42,7 +42,7 @@ public class UserTestDD {
 		Assert.assertEquals(response.getStatusCode(), 200);
 	}
 	
-	@Test(priority=3,dataProvider="UserNamesData",dataProviderClass=api.utilities.DataProviders.class,enabled=true)
+	@Test(priority=3,dataProvider="UserNames",dataProviderClass=api.utilities.DataProviders.class,enabled=true)
 	public void testUpdateUser(String userName) {
 		
 		userPayload.setUsername(userName);
@@ -57,7 +57,7 @@ public class UserTestDD {
 		responsepostupdate.then().log().all();
 	}
 	
-	@Test(priority=2,enabled=true,dataProvider="UserNamesData",dataProviderClass=api.utilities.DataProviders.class)
+	@Test(priority=2,enabled=true,dataProvider="UserNames",dataProviderClass=api.utilities.DataProviders.class)
 	public void testDeleteUser(String username) {
 		Response response = UserEndPoints.deleteUser(username);
 		System.out.println("Delete User Data");

@@ -21,5 +21,15 @@ public class PetEndPoints {
 				
 	}
 
+  public static Response GetUser(String Name){
+		
+		Response response = given()
+				.accept(ContentType.JSON)
 	
+				.pathParam("username", Name)
+				
+				.when()
+				.get(Routes.get_pet_url);
+		return response;
+	}
 }

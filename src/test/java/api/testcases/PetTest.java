@@ -1,24 +1,26 @@
 package api.testcases;
 
-import java.util.List;
+
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
+import com.sun.tools.javac.util.List;
 
 import api.endpoints.PetEndPoints;
+import api.endpoints.UserEndPoints;
 import api.payload.Pet;
 import api.payload.User;
 import io.restassured.response.Response;
 
 public class PetTest {
-	Pet petpayload;
-	Pet.Category categoryObj;
-	Pet.Tag tagObj;
-	Faker faker;
+	static Pet petpayload;
+	static Pet.Category categoryObj;
+	 static Pet.Tag tagObj;
+	 static Faker faker;
 	@BeforeClass
-public void generateTestData() {
+ public static void generateTestData() {
 	 petpayload =  new Pet();
 	 faker = new Faker();
 	 categoryObj = new Pet.Category();
@@ -54,4 +56,19 @@ public void generateTestData() {
 		
 		response.then().log().all();
 	}
+	
+	@Test(priority=2)
+	public void testGetUserData()
+	{
+		
+		Response response = UserEndPoints.GetUser(this.petpayload.getName());
+		System.out.println(response.getSessionId());
+		System.out.println("Read User Data");
+		//log response
+		response.then().log().all();
 }
+}
+	
+	
+	
+	

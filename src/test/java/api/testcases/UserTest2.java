@@ -36,7 +36,7 @@ public class UserTest2 {
 		userPayload.setPhone(faker.phoneNumber().cellPhone());
 		
 		//obtain logger
-		logger = LogManager.getLogger("RestAutomationFramework");
+		logger = LogManager.getLogger(UserTest2.class);
 		
 		
 	}
@@ -55,6 +55,9 @@ public class UserTest2 {
 		
 		//log
 		logger.info("Create User executed");
+		logger.warn("User already exist");
+		logger.trace("existed");
+		logger.debug("hi");
 		
 	}
 	
@@ -71,6 +74,7 @@ public class UserTest2 {
 		
 		//log
 				logger.info("Get User Data.");
+				
 	}
 	
 	@Test(priority=3)

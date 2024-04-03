@@ -25,8 +25,11 @@ public class UserTest {
 		
 		faker = new Faker();
 	    userPayload = new User();
+	    int id = faker.idNumber().hashCode();
 	    
-	    userPayload.setId(faker.idNumber().hashCode());
+	    userPayload.setId(id);
+	    System.out.println(id);
+	    
 	    userPayload.setUsername(faker.name().username());
 	    userPayload.setFirstname(faker.name().firstName());
 		userPayload.setLastname(faker.name().lastName());
@@ -35,7 +38,8 @@ public class UserTest {
 		userPayload.setPhone(faker.phoneNumber().cellPhone());
 		
 		//obtain logger
-		logger = LogManager.getLogger("RestAutomationFramework");
+		logger = LogManager.getLogger(UserTest.class);
+		
 		
 		
 	}
@@ -52,6 +56,8 @@ public class UserTest {
 		//validation
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getStatusLine(), "HTTP/1.1 200 OK");
+		Assert.assertEquals(response.getBody(), "");
+		
 		
 		//log
 		logger.info("Create User executed...");
