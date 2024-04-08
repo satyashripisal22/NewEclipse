@@ -21,12 +21,15 @@ public class UserTest {
 	public static Logger logger;
 	
 	@BeforeClass
-	public void generateTestData() {
+	public void generateTestData(){
 		
 		faker = new Faker();
 	    userPayload = new User();
+	    int id = faker.idNumber().hashCode();
 	    
-	    userPayload.setId(faker.idNumber().hashCode());
+	    userPayload.setId(id);
+	    System.out.println(id);
+	    
 	    userPayload.setUsername(faker.name().username());
 	    userPayload.setFirstname(faker.name().firstName());
 		userPayload.setLastname(faker.name().lastName());
@@ -35,7 +38,8 @@ public class UserTest {
 		userPayload.setPhone(faker.phoneNumber().cellPhone());
 		
 		//obtain logger
-		logger = LogManager.getLogger("RestAutomationFramework");
+		logger = LogManager.getLogger(UserTest.class);
+		
 		
 		
 	}
@@ -51,6 +55,9 @@ public class UserTest {
 		
 		//validation
 		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusLine(), "HTTP/1.1 200 OK");
+		Assert.assertEquals(response.getBody(), "");
+		
 		
 		//log
 		logger.info("Create User executed...");
@@ -61,6 +68,7 @@ public class UserTest {
 	public void testGetUserData() {
 		
 		Response response = UserEndPoints.GetUser(this.userPayload.getUsername());
+		System.out.println(response.getSessionId());
 		System.out.println("Read User Data");
 		//log response
 		response.then().log().all();
@@ -88,7 +96,7 @@ public class UserTest {
 		
 		Response responsepostupdate = UserEndPoints.GetUser(this.userPayload.getUsername());
 		
-		System.out.println("Update User Data");
+		System.out.println("Update User Data.");
 		
 		responsepostupdate.then().log().all();
 		

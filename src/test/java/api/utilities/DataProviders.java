@@ -1,43 +1,56 @@
 package api.utilities;
 
+import java.io.IOException;
+
 import org.testng.annotations.DataProvider;
 
 public class DataProviders {
-
-	@DataProvider(name="AllData")
-	public String [][] AllDataProvider()
+	XLUtility xl;
+	@DataProvider(name="Data")
+	public String [][] getAllData() throws IOException
 	{
+		//read data from excel
+		String path = System.getProperty("user.dir")+"//TestData//TestData.xlsx";
+		xl = new XLUtility(path);
+		int rownum = xl.getRowCount("Sheet1");
+		int colcount = xl.getCellCount("Sheet1",1);
 		
-		String fName = System.getProperty("user.dir")+"//TestData//TestData.xlsx";
-		int ttlRowCnt = ReadExcelFile.getRowCount(fName, "Sheet1");
-		int ttlColCnt = ReadExcelFile.getColCount(fName, "Sheet1");
+		String apidata[][] = new String[rownum][colcount];//store data in 2-dimensional array
 		
-		String userData[][] = new String[ttlRowCnt-1][ttlColCnt];
-		
-		for(int rowNo = 1;rowNo<ttlRowCnt;rowNo++) {
-			for(int colNo=0;colNo<ttlColCnt;colNo++) {
-				userData[rowNo-1][colNo] = ReadExcelFile.getCellValue(fName, "Sheet1", rowNo, colNo);
+		for(int i=1;i<=rownum;i++) {
+			for(int j=0;j<colcount;j++) {
+				apidata[i-1][j] = xl.getCellData("Sheet1",i,j);
 				
 			}
 		}
-		return userData;
+		return apidata;
 		
 	}
 	
-	@DataProvider(name="UserNameData")
-	public String [] UserNameDataProvider()
+	@DataProvider(name="UserNames")
+	public String [] getUserNames() throws IOException
 	{
 		
-		String fName = System.getProperty("user.dir")+"//TestData//TestData.xlsx";
-		int ttlRowCnt = ReadExcelFile.getRowCount(fName, "Sheet1");
+		String path = System.getProperty("user.dir")+"//TestData//TestData.xlsx";
+		xl = new XLUtility(path);
+		int rownum = xl.getRowCount("Sheet1");
 		//int ttlColCnt = ReadExcelFile.getColCount(fName, "Sheet1");
 		
-		String userNameData[] = new String[ttlRowCnt-1];
+		String apidata[] = new String[rownum];
 		
-		for(int rowNo = 1;rowNo<ttlRowCnt;rowNo++) {
-			 userNameData[rowNo-1] = ReadExcelFile.getCellValue(fName, "Sheet1", rowNo, 1);
+		for(int i=1;i<=rownum;i++) {
+			 apidata[i-1] = xl.getCellData("Sheet1",i,1);
 		}
-		return userNameData;
+		return apidata;
 		
 	}
 }
+
+
+
+
+
+
+
+
+
