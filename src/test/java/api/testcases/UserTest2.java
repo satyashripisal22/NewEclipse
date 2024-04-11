@@ -55,9 +55,6 @@ public class UserTest2 {
 		
 		//log
 		logger.info("Create User executed");
-		logger.warn("User already exist");
-		logger.trace("existed");
-		logger.debug("hi");
 		
 	}
 	
